@@ -58,16 +58,11 @@ def generate_sleep_val(start=3, end=10):
 
 
 def retrieve_reports(url, market, dst_file, date_val, cols) -> DownloadDetails:
-    user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36'
-    headers = {
-        'User-Agent': user_agent,
-    }
-
     request_data = dict(market=market,
                         date=date_val)
 
     response = requests.post(url=url,
-                             headers=headers,
+                             headers=headers.get_random_headers(),
                              data=request_data)
 
     if response.status_code == requests.codes.ok:
